@@ -1,14 +1,43 @@
+<div style="height: 100vh;">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Responsive Navigation</span>
+      <span class="example-spacer"></span>
+      <div fxShow="true" fxHide.lt-md="true">
+        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+       <a href="/place-describer" mat-button>
+          <mat-icon>landscape</mat-icon>
+          All places
+        </a>
+        <a href="/profile-describer" mat-button>
+          <mat-icon>account_box</mat-icon>
+          My Account
+        </a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
 
-    <!-- Start your project here-->
-<div style="height: 100vh">
-  <div class="flex-center flex-column">
-    <h1 class="animated fadeIn mb-4">Material Design for Bootstrap (Angular)</h1>
-
-    <h5 class="animated fadeIn mb-3">Thank you for using our product. We're glad you're with us.</h5>
-    <h6 class="animated fadeIn mb-3">Start browsing <a href="https://mdbootstrap.com/angular">documentation</a>.</h6>
-
-    <p class="animated fadeIn text-muted">MDB Team</p>
-  </div>
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a href="/place-describer" mat-list-item>
+          <mat-icon>landscape</mat-icon>
+          All places
+        </a>
+        <a href="/profile-describer" mat-list-item>
+          <mat-icon>account_box</mat-icon>
+          My Account
+        </a>
+        <a (click)="sidenav.toggle()" mat-list-item>
+          <mat-icon>close</mat-icon> Close
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
-<!-- /Start your project here-->
-    

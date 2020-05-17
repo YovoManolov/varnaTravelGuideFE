@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'varnaTravelGuideFE';
+export class HomeComponent implements OnInit {
   isAuthenticated: boolean;
 
   constructor(public oktaAuth: OktaAuthService) {
@@ -15,16 +14,9 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+    // Subscribe to authentication state changes
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
     );
   }
-
-  login() {
-    this.oktaAuth.loginRedirect('/profile');
-  }
-
-  logout() {
-    this.oktaAuth.logout('/');
-  } 
 }
