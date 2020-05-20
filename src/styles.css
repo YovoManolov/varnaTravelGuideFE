@@ -1,4 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body { margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.bg-img
+{
+    background-image: url('src/assets/imgs/Azure_Blue_Sea_Background-775.jpg');
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+
