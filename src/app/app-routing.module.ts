@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'list-places', component: ListPlacesComponent },
   { path: 'place-describer', component: PlaceDescriberComponent },
   { path: 'profile-describer', component: ProfileDescriberComponent }
-]; // sets up routes constant where you define your routes
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

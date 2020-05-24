@@ -16,14 +16,9 @@ const oktaConfig = {
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'implicit/callback',
-    component: OktaCallbackComponent
-  }
+  { path: 'home',  component: HomeComponent },
+
+  { path: 'implicit/callback', component: OktaCallbackComponent }
 ];
 
 @NgModule({
