@@ -1,9 +1,12 @@
+import { Place } from './../models/place';
+import { Restaurant } from './../models/restaurant';
+import { Landmark } from './../models/landmark';
+import { Hotel } from './../models/hotel';
 import { Component, OnInit } from '@angular/core';
 import { HotelService } from '../services/hotel/hotel.service';
 import { LandmarkService } from '../services/landmark/landmark.service';
 import { RestaurantService } from '../services/restaurant/restaurant.service';
 import { ShoppingPlaceService } from '../services/shoppingPlace/shopping-place.service';
-import { Place } from '../models/place';
 
 @Component({
   selector: 'app-list-places',
@@ -13,22 +16,22 @@ import { Place } from '../models/place';
 export class ListPlacesComponent implements OnInit {
 
   
-  allPlaces: Array<any>;
-  hotels = [];
-  landmarks = [];
-  restaurants = [];
-  shoppingPlaces = [];
+  allPlaces: Array<Hotel |Landmark |Restaurant | Place>  = [];
+  hotels: Array<Hotel> = [];
+  landmarks : Array<Landmark> = [];
+  restaurants: Array<Restaurant> = [];
+  shoppingPlaces: Array<Place> = [];
 
   constructor(
      private hotelService: HotelService,
-    private landmarkService: LandmarkService,
-    private restaurantService: RestaurantService,
-    private shoppingPlaceService: ShoppingPlaceService
+      private landmarkService: LandmarkService,
+      private restaurantService: RestaurantService,
+     private shoppingPlaceService: ShoppingPlaceService
   ) { }
 
   ngOnInit(): void {
 
-    this.hotelService.getAll().subscribe((allHotels: any[])=>{
+    this.hotelService.getAll().subscribe((allHotels: Hotel[])=>{
       console.log(allHotels);
       this.hotels = allHotels;
 
@@ -38,7 +41,7 @@ export class ListPlacesComponent implements OnInit {
       
     }) ;
     
-    this.landmarkService.getAll().subscribe((allLandmarks: any[])=>{
+    this.landmarkService.getAll().subscribe((allLandmarks: Landmark[])=>{
       console.log(allLandmarks);
       this.landmarks = allLandmarks;
 
@@ -47,7 +50,7 @@ export class ListPlacesComponent implements OnInit {
       });
     });
 
-    this.restaurantService.getAll().subscribe((allRestaurants: any[])=>{
+    this.restaurantService.getAll().subscribe((allRestaurants: Restaurant[])=>{
       console.log(allRestaurants);
       this.restaurants = allRestaurants;
 
@@ -56,7 +59,7 @@ export class ListPlacesComponent implements OnInit {
       });
     });
 
-    this.shoppingPlaceService.getAll().subscribe((allShoppingPlaces: any[])=>{
+    this.shoppingPlaceService.getAll().subscribe((allShoppingPlaces: Place[])=>{
       console.log(allShoppingPlaces);
       this.shoppingPlaces = allShoppingPlaces;
 

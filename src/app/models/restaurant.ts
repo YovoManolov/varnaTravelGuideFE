@@ -7,4 +7,3 @@ export class Restaurant {
     cuisine: string;
     place: Place;
 }
-}

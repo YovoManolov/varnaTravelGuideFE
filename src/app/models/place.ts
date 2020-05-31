@@ -2,7 +2,7 @@ import { WorkHours } from './work-hours';
 import { Point } from './point';
 import { Image } from './image';
 
-export interface Place {
+export class Place {
    
     _id: string ;
     name: string;	

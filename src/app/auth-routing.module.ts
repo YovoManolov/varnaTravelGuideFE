@@ -9,16 +9,15 @@ import { AuthInterceptor } from './shared/okta/auth.interceptor';
 
 const oktaConfig = {
   issuer: 'https://dev-380801.okta.com/oauth2/default',
-  redirectUri: window.location.origin + '/implicit/callback',
+  redirectUri: window.location.origin + '/callback',
   clientId: '0oaaw6k5tWxBzlPvb4x6',
   scopes: ['openid', 'profile']
 };
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/list-places', pathMatch: 'full' },
   { path: 'home',  component: HomeComponent },
-
-  { path: 'implicit/callback', component: OktaCallbackComponent }
+  { path: 'callback', component: OktaCallbackComponent }
 ];
 
 @NgModule({

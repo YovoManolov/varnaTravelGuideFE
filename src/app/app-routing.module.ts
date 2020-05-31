@@ -3,11 +3,12 @@ import { PlaceDescriberComponent } from './place-describer/place-describer.compo
 import { ListPlacesComponent } from './list-places/list-places.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { OktaAuthGuard } from '@okta/okta-angular';
 
 const routes: Routes = [
-  { path: 'list-places', component: ListPlacesComponent },
-  { path: 'place-describer', component: PlaceDescriberComponent },
-  { path: 'profile-describer', component: ProfileDescriberComponent }
+  { path: 'list-places', component: ListPlacesComponent,  canActivate: [OktaAuthGuard] },
+  { path: 'place-describer', component: PlaceDescriberComponent,  canActivate: [OktaAuthGuard]},
+  { path: 'profile-describer', component: ProfileDescriberComponent,  canActivate: [OktaAuthGuard]}
 ];
 
 @NgModule({
