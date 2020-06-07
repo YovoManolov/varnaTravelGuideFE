@@ -25,7 +25,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ListPlacesComponent,
     PlaceDescriberComponent,
     ProfileDescriberComponent
-
   ],
   imports: [
     BrowserModule,

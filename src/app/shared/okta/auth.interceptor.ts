@@ -1,4 +1,4 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
 import { OktaAuthService } from '@okta/okta-angular';
 import { Injectable } from '@angular/core';
