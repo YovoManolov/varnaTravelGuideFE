@@ -1,22 +1,23 @@
-<div style="padding: 13px;">
-    <mat-card *ngFor="let place of allPlaces" style="margin-top:10px;">
-
-           <!-- <img mat-card-image src="place.place.imga" alt="Photo of a Shiba Inu"> -->
+<div fxLayout="row wrap">
+        <mat-card  *ngFor="let place of allPlaces" class="example-card" fxFlex="auto">
             <mat-card-header>
-                    <mat-card-title>{{place.place.name}}</mat-card-title>
-                    <mat-card-subtitle>Contacts: {{place.place.contacts}} </mat-card-subtitle>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{place.place.name}}</mat-card-title>
+              <mat-card-subtitle>Date posted</mat-card-subtitle>
             </mat-card-header>
+                 <div *ngFor="let image of place.place.images">
+                    <!-- style="margin-top:20px;" width:200px; height: 200px" -->
+                      <img style="margin-top:20px;" mat-card-image *ngIf="image.mainImage == 1" 
+                                  src="https://drive.google.com/uc?id={{image.imageURL}}" />
+                  </div>
             <mat-card-content>
-                <p> test
-                    {{place.place.description}}
-                </p>
-                <div *ngFor="let image of place.images">
-                    <img *ngIf="image.mainImage == 1" 
-                        style="height:100%; width: 100%;" src="{{place.place.image.imageURL}}" />
-                </div>
+              <p >
+               {{place.place.description}}
+              </p>
             </mat-card-content>
             <mat-card-actions>
-        <button mat-button> Show place details</button>
-        </mat-card-actions>
-   </mat-card>
+              <button mat-button>Show place details</button>
+                <!-- <mat-icon mat-card-avatar>favorite</mat-icon> -->
+            </mat-card-actions>
+          </mat-card>
 </div>

@@ -16,6 +16,7 @@ import { Place } from '../models/place';
 })
 export class ListPlacesComponent implements OnInit {
 
+  static readonly imgUrlPrefix = '';
   allPlaces: Array<any>  = [];
   hotels: Array<Hotel> = [];
   landmarks : Array<Landmark> = [];
@@ -23,7 +24,6 @@ export class ListPlacesComponent implements OnInit {
   shoppingPlaces: Array<Place> = [];
 
   constructor(
-
         private landmarkService: LandmarkService,
         private hotelService: HotelService,
         private restaurantService: RestaurantService,
@@ -66,16 +66,15 @@ export class ListPlacesComponent implements OnInit {
 
     this.shoppingPlaceService.getAll().subscribe((allShoppingPlaces: Place[])=>{
       console.log(allShoppingPlaces);
-      this.shoppingPlaces = allShoppingPlaces;
-
-      let shoppingPlace: ShoppingPlace ; 
+      
+      let shoppingPlace: ShoppingPlace; 
         
-      this.shoppingPlaces.forEach(place => {
+      allShoppingPlaces.forEach(place => {
         shoppingPlace = new ShoppingPlace(place);
         this.allPlaces.push(shoppingPlace);
       });
     });
     
   }
-
+  
 }
