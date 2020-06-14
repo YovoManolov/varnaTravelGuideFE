@@ -1,11 +1,4 @@
-.bg-img{
-    min-height: 100vh;
-   width: 100%;
-   background: url('D:\GitHub\vtgw\VarnaTravelGuideFE_angular\src\assets\imgs\Azure_Blue_Sea_Background-775.jpg') no-repeat center center fixed;
-   -webkit-background-size: cover;
-   -moz-background-size: cover;
-   -o-background-size: cover;
-   background-size: cover;
+#map {
+    height: 400px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
    }
-
-   @import url("navigation.css");

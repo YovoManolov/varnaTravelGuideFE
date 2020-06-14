@@ -11,12 +11,12 @@
                                   src="https://drive.google.com/uc?id={{image.imageURL}}" />
                   </div>
             <mat-card-content>
-              <p >
+              <p>
                {{place.place.description}}
               </p>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button>Show place details</button>
+              <button [routerLink]="['/place-describer', place.place.typeOfPlace, place._id]" mat-button>Show place details</button>
                 <!-- <mat-icon mat-card-avatar>favorite</mat-icon> -->
             </mat-card-actions>
           </mat-card>

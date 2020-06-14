@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Hotel } from 'src/app/models/hotel';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
 
 const baseUrl = 'http://localhost:8080/hotels';
 
@@ -18,8 +21,9 @@ export class HotelService {
     return this.http.get(`${baseUrl}/getAll`);
   }
 
-  getHotelById(id: string) {
-    return this.http.get(`${baseUrl}/getOneById/${id}`);
+  getHotelById(_id: string): Observable<Hotel> {
+    const url = `${baseUrl}/getOneById/${_id}`;
+    return this.http.get<Hotel>(url);
   }
 
   update(id: string, data) {

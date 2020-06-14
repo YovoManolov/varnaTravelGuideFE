@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Restaurant } from 'src/app/models/restaurant';
+import { Observable } from 'rxjs/internal/Observable';
 
 const baseUrl = 'http://localhost:8080/restaurants';
 
@@ -18,8 +20,9 @@ export class RestaurantService {
     return this.http.get(`${baseUrl}/getAll`);
   }
 
-  getRestaurantById(id: string) {
-    return this.http.get(`${baseUrl}/getOneById/${id}`);
+  getRestaurantById(_id: string): Observable<Restaurant> {
+    const url = `${baseUrl}/getOneById/${_id}`;
+    return this.http.get<Restaurant>(url);
   }
 
   update(id: string, data) {

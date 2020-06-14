@@ -1,5 +1,7 @@
+import { Place } from './../../models/place';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 const baseUrl = 'http://localhost:8080/shoppingPlaces';
 
@@ -18,8 +20,9 @@ export class ShoppingPlaceService {
     return this.http.get(`${baseUrl}/getAll`);
   }
 
-  getShoppingPlaceById(id: string) {
-    return this.http.get(`${baseUrl}/getOneById/${id}`);
+  getShoppingPlaceById(_id: string): Observable<Place> {
+    const url = `${baseUrl}/getOneById/${_id}`;
+    return this.http.get<Place>(url);
   }
 
   update(id: string, data) {
