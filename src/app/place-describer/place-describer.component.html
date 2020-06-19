@@ -8,8 +8,13 @@
     <div class="row">
 
         <div class="col-md-8">
-            <!-- main image -->
-            <img class="img-fluid" src="http://placehold.it/750x500" alt="">
+            <div *ngFor="let image of place.place.images">
+                <div class="col-md-3 col-sm-6 mb-4" *ngIf="image.mainImage">
+                    <a href="#">
+                        <img style="width:500px; height:400px;" src="https://drive.google.com/uc?id={{image.imageURL}}">
+                    </a>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-4">
@@ -25,16 +30,15 @@
         </div>
 
     </div>
-
-    <!-- <div id="map"></div> -->
-
+    <div class="row my-3">
+        <google-map></google-map>
+    </div>
     <div class="row my-4">
-
-    <div *ngFor="let image of place.place.images">
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img style="width:400px; height:400px;" src="https://drive.google.com/uc?id={{image.imageURL}}">
-            </a>
+        <div *ngFor="let image of place.place.images">
+            <div class="col-md-3 col-sm-6 mb-4" *ngIf="!image.mainImage">
+                <a href="#">
+                    <img style="width:400px; height:400px;" src="https://drive.google.com/uc?id={{image.imageURL}}">
+                </a>
+            </div>
         </div>
     </div>
-</div>
