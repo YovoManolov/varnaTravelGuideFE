@@ -18,27 +18,58 @@
         </div>
 
         <div class="col-md-4">
-            <h3 class="my-3">Place Description</h3>
-            <p>{{place.place.description}}</p>
-            <h3 class="my-3">Project Details</h3>
+            <h2 class="my-3">Place Description</h2>
+            <p style="font-size:medium">{{place.place.description}}</p>
+            <h2 class="my-3">Project Details</h2>
             <ul>
                 <li>Lorem Ipsum</li>
                 <li>Dolor Sit Amet</li>
                 <li>Consectetur</li>
                 <li>Adipiscing Elit</li>
             </ul>
+            <button class="my-4" mat-raised-button color="primary" (click)="deletePlace()">Delete place</button>
         </div>
 
     </div>
-    <div class="row my-3">
-        <google-map></google-map>
-    </div>
-    <div class="row my-4">
-        <div *ngFor="let image of place.place.images">
-            <div class="col-md-3 col-sm-6 mb-4" *ngIf="!image.mainImage">
-                <a href="#">
-                    <img style="width:400px; height:400px;" src="https://drive.google.com/uc?id={{image.imageURL}}">
-                </a>
+        <google-map
+            height="450px"
+            width="550px"
+            [zoom]="zoom"
+            [center]="center"
+            [options]="options"
+            (mapClick)="click($event)"
+            class="my-4"
+            >
+            <map-marker
+                #markerElem
+                *ngFor="let marker of markers"
+                [position]="marker.position"
+                [label]="marker.label"
+                [title]="marker.title"
+                [options]="marker.options"
+                (mapClick)="openInfo(markerElem, marker.info)"
+            >
+            </map-marker>
+            <map-info-window>{{ infoContent }}</map-info-window>
+        </google-map> 
+        <!-- <div class="my-4" >
+            <agm-map [latitude]="lat" [longitude]="lng">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            </agm-map>
+        </div> -->
+
+        <div class="my-3">
+            <button class="mx-3" mat-raised-button (click)="zoomIn()">Zoom in</button>
+            <button  mat-raised-button (click)="zoomOut()">Zoom out</button>
+        </div>
+        
+        <div class="row my-4">
+            <div style="margin-left: 10px;" *ngFor="let image of place.place.images">
+                <div class="col-md-3 col-sm-6 mb-4" *ngIf="!image.mainImage">
+                    <img style="width:400px; height:400px; " src="https://drive.google.com/uc?id={{image.imageURL}}">
+                </div>
             </div>
         </div>
+
     </div>
+    

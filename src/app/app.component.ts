@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { OktaAuthService } from '@okta/okta-angular';
 export class AppComponent implements OnInit {
   title = 'varnaTravelGuideFE';
   isAuthenticated: boolean;
+  apiEndPoint:string="";
 
   constructor(public oktaAuth: OktaAuthService) {
   }
@@ -18,6 +20,8 @@ export class AppComponent implements OnInit {
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
     );
+
+    this.apiEndPoint = environment.apiKey;
   }
 
   login() {
