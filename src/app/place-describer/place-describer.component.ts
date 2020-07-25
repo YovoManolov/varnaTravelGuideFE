@@ -64,15 +64,19 @@ export class PlaceDescriberComponent implements OnInit {
 
       case "1": {
         this.restaurantService.delete(this.place._id);
+        break; 
       }
       case "2": {
         this.hotelService.delete(this.place._id);
+        break; 
       }
       case "3": {
         this.shoppingPlaceService.delete(this.place._id);
+        break; 
       }
       case "4": {
         this.landmarkService.delete(this.place._id);
+        break; 
       }
     }
   }

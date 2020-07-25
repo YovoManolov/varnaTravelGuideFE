@@ -8,6 +8,7 @@ import { LandmarkService } from '../services/landmark/landmark.service';
 import { RestaurantService } from '../services/restaurant/restaurant.service';
 import { ShoppingPlaceService } from '../services/shoppingPlace/shopping-place.service';
 import { Place } from '../models/place';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-places',
@@ -16,23 +17,59 @@ import { Place } from '../models/place';
 })
 export class ListPlacesComponent implements OnInit {
 
-  static readonly imgUrlPrefix = '';
   allPlaces: Array<any>  = [];
   hotels: Array<Hotel> = [];
   landmarks : Array<Landmark> = [];
   restaurants: Array<Restaurant> = [];
   shoppingPlaces: Array<Place> = [];
+  placeTypeUrl: String = '';
 
   constructor(
         private landmarkService: LandmarkService,
         private hotelService: HotelService,
         private restaurantService: RestaurantService,
-        private shoppingPlaceService: ShoppingPlaceService
+        private shoppingPlaceService: ShoppingPlaceService,
+        private route: ActivatedRoute,
         
   ) { }
 
   ngOnInit(): void {
 
+    this.route.params.subscribe(params => {
+      this.placeTypeUrl = params['placeTypeUrl'];
+    });
+
+    this.route.queryParams.subscribe( params => console.log('queryParams', params['st']));
+    
+    this.allPlaces = [];
+    switch (this.placeTypeUrl) {
+      case "all": {
+        this.loadShoppingPlaces();
+        this.loadRestaurants();
+        this.loadHotels();
+        this.loadLandmarks();
+        break; 
+      }
+      case "shoppingPlaces": {
+        this.loadShoppingPlaces();
+        break; 
+      }
+      case "restaurants": {
+        this.loadRestaurants();
+        break; 
+      }
+      case "hotels": {
+        this.loadHotels();
+      }
+      case "landmarks": {
+        this.loadLandmarks();
+        break; 
+      }
+    }
+  }
+
+  loadLandmarks(){
+    
     this.landmarkService.getAll().subscribe((allLandmarks: Landmark[])=>{
 
       console.log(allLandmarks);
@@ -41,32 +78,16 @@ export class ListPlacesComponent implements OnInit {
       this.landmarks.forEach(landmark => {
         this.allPlaces.push(landmark);
       });
-
-    });
-
-    this.hotelService.getAll().subscribe((allHotels: Hotel[])=>{
-
-      console.log(allHotels);
-      this.hotels = allHotels;
-
-      this.hotels.forEach(hotel => {
-        this.allPlaces.push(hotel);
-      });
       
-    }) ;
-
-    this.restaurantService.getAll().subscribe((allRestaurants: Restaurant[])=>{
-          console.log(allRestaurants);
-          this.restaurants = allRestaurants;
-
-          this.restaurants.forEach(restaurant => {
-          this.allPlaces.push(restaurant);
-      });
     });
+
+  }
+
+  loadShoppingPlaces(){
 
     this.shoppingPlaceService.getAll().subscribe((allShoppingPlaces: Place[])=>{
+
       console.log(allShoppingPlaces);
-      
       let shoppingPlace: ShoppingPlace; 
         
       allShoppingPlaces.forEach(place => {
@@ -74,7 +95,33 @@ export class ListPlacesComponent implements OnInit {
         this.allPlaces.push(shoppingPlace);
       });
     });
-    
+
   }
   
+  loadRestaurants(){ 
+    
+    this.restaurantService.getAll().subscribe((allRestaurants: Restaurant[])=>{
+      console.log(allRestaurants);
+      this.restaurants = allRestaurants;
+
+          this.restaurants.forEach(restaurant => {
+          this.allPlaces.push(restaurant);
+      });
+    });
+  }
+
+  loadHotels(){ 
+
+    this.hotelService.getAll().subscribe((allHotels: Hotel[])=>{
+      console.log(allHotels);
+      this.hotels = allHotels;
+
+      this.hotels.forEach(hotel => {
+        this.allPlaces.push(hotel);
+      });
+    });
+
+  }
+
+
 }

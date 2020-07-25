@@ -1,40 +1,109 @@
-<div style="height: 100vh;">
+<div style="height: 100vh;"> 
+
   <mat-toolbar color="primary">
-    <mat-toolbar-row>
+    <!-- <mat-toolbar-row> -->
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
         <mat-icon>menu</mat-icon>
       </button>
-      <span>Varna Travel Guide</span>
+      <span class="mx-4">Varna Travel Guide</span>
       <span class="example-spacer"></span>
-      <div fxShow="true" fxHide.lt-md="true">
+       <div fxShow="true" fxHide.lt-md="true">
+
+          <a [matMenuTriggerFor]="menu"  mat-button>
+            <mat-icon>menu</mat-icon>
+            Type of place
+          </a> 
+          <mat-menu #menu="matMenu">
+            <a mat-menu-item  href="/list-places/landmarks" mat-button>
+                <mat-icon>landscape</mat-icon>
+              Landmarks
+            </a>
+            <a mat-menu-item  href="/list-places/hotels" mat-button>
+              <mat-icon>hotel</mat-icon>
+              Hotels
+            </a>
+            <a mat-menu-item href="/list-places/restaurants" mat-button>
+              <mat-icon>local_dining</mat-icon>
+              Restaurants
+            </a>
+            
+            <span class="example-spacer"></span>
+            <a mat-menu-item href="/list-places/shoppingPlaces" mat-button>
+              <mat-icon>shopping_cart</mat-icon>
+              Shopping places
+            </a>
+            <a  mat-menu-item (click)="sidenav.toggle()" mat-button>
+              <mat-icon>close</mat-icon> 
+              Close
+            </a>
+          </mat-menu>
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
-       <a href="/list-places" mat-button>
+       <a href="/list-places/all" mat-button>
           <mat-icon>landscape</mat-icon>
           All places
-        </a>
+       </a>
         <a href="/profile-describer" mat-button>
           <mat-icon>account_box</mat-icon>
           My Account
         </a>
+        <span class="example-spacer"></span>
+        <a *ngIf="!isAuthenticated" (click)="oktaAuth.loginRedirect()" mat-button>
+          <mat-icon>login</mat-icon>
+          Login
+        </a>
+      <a *ngIf="isAuthenticated" (click)="oktaAuth.logout()" mat-button>
+        <mat-icon>exit_to_app</mat-icon>
+        Logout
+      </a>
       </div>
-    </mat-toolbar-row>
+    <!-- </mat-toolbar-row> -->
   </mat-toolbar>
 
-  <mat-sidenav-container fxFlexFill>
+  <mat-sidenav-container fxFlexFill class="example-container">
     <mat-sidenav #sidenav>
-      <mat-nav-list>
-        <a href="/list-places" mat-list-item>
+      <!-- <mat-nav-list> -->
+        <a mat-list-item [matMenuTriggerFor]="menu">Type of place</a>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item  href="/list-places/landmarks"mat-button>
+              <mat-icon>landscape</mat-icon>
+            Landmarks
+          </a>
+          <a mat-menu-item  href="/list-places/hotels" mat-button>
+            <mat-icon>account_box</mat-icon>
+            Hotels
+          </a>
+          <a mat-menu-item href="/list-places/restaurants" mat-button>
+            <mat-icon>account_box</mat-icon>
+            Restaurants
+          </a>
+          <a mat-menu-item href="/list-places/shoppingPlaces" mat-button>
+            <mat-icon>account_box</mat-icon>
+            Shopping places
+          </a>
+          <a  mat-menu-item (click)="sidenav.toggle()" mat-button>
+            <mat-icon>close</mat-icon> Close
+          </a>
+        </mat-menu>
+        <a mat-list-item href="/list-places/all" mat-button>
           <mat-icon>landscape</mat-icon>
           All places
         </a>
-        <a href="/profile-describer" mat-list-item>
+        <a href="/profile-describer" mat-list-item  mat-button>
           <mat-icon>account_box</mat-icon>
           My Account
         </a>
-        <a (click)="sidenav.toggle()" mat-list-item>
+        <a (click)="sidenav.toggle()" mat-list-item mat-button>
           <mat-icon>close</mat-icon> Close
         </a>
-      </mat-nav-list>
+        <a *ngIf="!isAuthenticated" (click)="oktaAuth.loginRedirect()" mat-button>
+          <mat-icon>account_box</mat-icon>
+          Login
+        </a>
+        <a *ngIf="isAuthenticated" (click)="oktaAuth.logout()" mat-button>
+          <mat-icon>account_box</mat-icon>
+          Logout
+        </a>
+      <!-- </mat-nav-list> -->
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>
         <router-outlet></router-outlet>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { OktaAuthService } from '@okta/okta-angular';
 import { environment } from '../environments/environment';
+import { OktaAuthService } from '@okta/okta-angular';
 
 @Component({
   selector: 'app-root',
+  preserveWhitespaces: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
   title = 'varnaTravelGuideFE';
   isAuthenticated: boolean;
   apiEndPoint:string="";
-
+  
   constructor(public oktaAuth: OktaAuthService) {
   }
 

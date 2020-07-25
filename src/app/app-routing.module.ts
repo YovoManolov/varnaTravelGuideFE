@@ -6,13 +6,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { OktaAuthGuard } from '@okta/okta-angular';
 
 const routes: Routes = [
-  { path: 'list-places', component: ListPlacesComponent,  canActivate: [OktaAuthGuard] },
+  { path: 'list-places/:placeTypeUrl', component: ListPlacesComponent,  canActivate: [OktaAuthGuard] },
   { path: 'place-describer/:typeOfPlace/:_id', component: PlaceDescriberComponent,  canActivate: [OktaAuthGuard]},
   { path: 'profile-describer', component: ProfileDescriberComponent,  canActivate: [OktaAuthGuard]}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes,{
+        onSameUrlNavigation: 'reload'
+      }
+  )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { } export const 
