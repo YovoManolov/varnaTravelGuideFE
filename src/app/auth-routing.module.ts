@@ -15,7 +15,7 @@ const oktaConfig = {
 };
 
 const routes: Routes = [
-  { path: '', redirectTo: '/list-places', pathMatch: 'full' },
+  { path: '', redirectTo: '/list-places/all', pathMatch: 'full' },
   { path: 'home',  component: HomeComponent },
   { path: 'callback', component: OktaCallbackComponent }
 ];
