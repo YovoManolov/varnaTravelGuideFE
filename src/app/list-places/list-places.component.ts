@@ -60,6 +60,7 @@ export class ListPlacesComponent implements OnInit {
       }
       case "hotels": {
         this.loadHotels();
+        break; 
       }
       case "landmarks": {
         this.loadLandmarks();

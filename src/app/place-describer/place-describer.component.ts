@@ -143,6 +143,7 @@ export class PlaceDescriberComponent implements OnInit {
             this.hotelService.getHotelById(this._id).subscribe((hotel: Hotel)=>{
               this.place = hotel;
               this.loadGoogleMapsInfo(this.place);
+              
             });
             break; 
           } 
