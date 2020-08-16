@@ -24,7 +24,7 @@ export class PlaceDescriberComponent implements OnInit {
   
   _id: string;
   typeOfPlace: string;
-  showModal: boolean;
+  showPriceCategory: boolean;
   place: ShoppingPlace | Hotel| Restaurant | Landmark = null ;
 
   zoom = 12
@@ -139,11 +139,9 @@ export class PlaceDescriberComponent implements OnInit {
             break; 
           } 
           case "2": {  //hotel
-
             this.hotelService.getHotelById(this._id).subscribe((hotel: Hotel)=>{
               this.place = hotel;
               this.loadGoogleMapsInfo(this.place);
-              
             });
             break; 
           } 
@@ -168,4 +166,6 @@ export class PlaceDescriberComponent implements OnInit {
     }
 
   } 
+
+  
 }
