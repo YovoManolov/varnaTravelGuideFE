@@ -7,6 +7,7 @@ import { OktaAuthGuard } from '@okta/okta-angular';
 
 const routes: Routes = [
   { path: 'list-places/:placeTypeUrl', component: ListPlacesComponent,  canActivate: [OktaAuthGuard] },
+  { path: 'list-places/:placeTypeUrl', component: ListPlacesComponent,  canActivate: [OktaAuthGuard] },
   { path: 'place-describer/:typeOfPlace/:_id', component: PlaceDescriberComponent,  canActivate: [OktaAuthGuard]},
   { path: 'profile-describer', component: ProfileDescriberComponent,  canActivate: [OktaAuthGuard]}
 ];

@@ -2,13 +2,14 @@ import { ShoppingPlace } from './../models/shopping-place';
 import { Restaurant } from './../models/restaurant';
 import { Landmark } from './../models/landmark';
 import { Hotel } from './../models/hotel';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { HotelService } from '../services/hotel/hotel.service';
 import { LandmarkService } from '../services/landmark/landmark.service';
 import { RestaurantService } from '../services/restaurant/restaurant.service';
 import { ShoppingPlaceService } from '../services/shoppingPlace/shopping-place.service';
 import { Place } from '../models/place';
 import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-list-places',
@@ -29,19 +30,19 @@ export class ListPlacesComponent implements OnInit {
         private hotelService: HotelService,
         private restaurantService: RestaurantService,
         private shoppingPlaceService: ShoppingPlaceService,
-        private route: ActivatedRoute,
+        private route: ActivatedRoute
         
   ) { }
 
   ngOnInit(): void {
 
+    this.allPlaces = [];
     this.route.params.subscribe(params => {
       this.placeTypeUrl = params['placeTypeUrl'];
     });
-
+    
     this.route.queryParams.subscribe( params => console.log('queryParams', params['st']));
     
-    this.allPlaces = [];
     switch (this.placeTypeUrl) {
       case "all": {
         this.loadShoppingPlaces();
@@ -123,6 +124,5 @@ export class ListPlacesComponent implements OnInit {
     });
 
   }
-
 
 }

@@ -29,7 +29,7 @@ export class RestaurantService {
     return this.http.put(`${baseUrl}/update/`, data);
   }
 
-  delete(id: string) {
+    delete(id: string) {
     return this.http.delete(`${baseUrl}/deleteById/${id}`);
   }
 }

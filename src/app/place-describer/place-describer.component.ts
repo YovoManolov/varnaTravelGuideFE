@@ -7,9 +7,10 @@ import { RestaurantService } from './../services/restaurant/restaurant.service';
 import { LandmarkService } from './../services/landmark/landmark.service';
 import { HotelService } from './../services/hotel/hotel.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Place } from '../models/place';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-place-describer',
@@ -26,6 +27,7 @@ export class PlaceDescriberComponent implements OnInit {
   typeOfPlace: string;
   showPriceCategory: boolean;
   place: ShoppingPlace | Hotel| Restaurant | Landmark = null ;
+  serviceResponse: String;
 
   zoom = 12
   center: google.maps.LatLngLiteral;
@@ -43,6 +45,7 @@ export class PlaceDescriberComponent implements OnInit {
   infoContent = ''
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private landmarkService: LandmarkService,
     private hotelService: HotelService,
@@ -63,19 +66,24 @@ export class PlaceDescriberComponent implements OnInit {
     switch(this.typeOfPlace) {
 
       case "1": {
-        this.restaurantService.delete(this.place._id);
+        this.restaurantService.delete(this.place._id)
+        this.router.navigate(['/list-places/restaurants']);
         break; 
       }
       case "2": {
-        this.hotelService.delete(this.place._id);
+        this.hotelService.delete(this.place._id).subscribe(
+          response => { });
+        this.router.navigate(['/list-places/hotels']);
         break; 
       }
       case "3": {
         this.shoppingPlaceService.delete(this.place._id);
+        this.router.navigate(['/list-places/shoppingPlaces']);
         break; 
       }
       case "4": {
         this.landmarkService.delete(this.place._id);
+        this.router.navigate(['/list-places/landmarks']);
         break; 
       }
     }

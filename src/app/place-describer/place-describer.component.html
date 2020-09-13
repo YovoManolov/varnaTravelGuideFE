@@ -20,14 +20,21 @@
         <div class="col-md-4">
             <h2 class="my-3">Place Description</h2>
             <p style="font-size:medium">{{place.place.description}}</p>
-            <h2 class="my-3">Project Details</h2>
+            <h2 class="my-3">Place Contacts</h2>
+            <p style="font-size:medium">{{place.place.contacts}}</p>
+            <h2 class="my-3">Place Address</h2>
+            <p style="font-size:medium">{{place.place.address}}</p>
+            <h2 class="my-3">Working Hours:</h2>
             <ul>
-                <li>Lorem Ipsum</li>
-                <li>Dolor Sit Amet</li>
-                <li>Consectetur</li>
-                <li>Adipiscing Elit</li>
+                <div *ngIf="place.place.workHours.is_24H; else not24_7">
+                     <li style="font-size: large" >24/7</li>
+                </div>
+                <ng-template #not24_7>
+                    <li>Monday-Friday: {{place.place.workHours.mond_fird}}</li>
+                    <li>Saturday: {{place.place.workHours.sat}}</li>
+                    <li>Sunday: {{place.place.workHours.sat}}</li>
+                </ng-template>
             </ul>
-
             <div class="row">
                 <div class="col">
                     <h2>Price category: </h2>
@@ -61,7 +68,7 @@
         [center]="center"
         [options]="options"
         (mapClick)="click($event)"
-        class="my-4">
+        class="my-2">
         <map-marker
             #markerElem
             *ngFor="let marker of markers"

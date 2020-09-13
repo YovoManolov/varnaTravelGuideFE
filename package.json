@@ -27,6 +27,7 @@
     "@angular/router": "~9.0.7",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "@okta/okta-angular": "2.0.0",
+    "@okta/okta-signin-widget": "^4.4.3",
     "@oktadev/schematics": "^2.0.2",
     "bootstrap": "^4.5.0",
     "geojson": "^0.5.0",
